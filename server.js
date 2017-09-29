@@ -4,7 +4,8 @@
 // init project
 var express = require('express');
 var app = express();
-
+var multer = require('multer');
+var path = require('path');
 
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
@@ -22,7 +23,7 @@ app.get("/dreams", function (request, response) {
 });
 
 // could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
-app.post("/dreams", function (request, response) {
+app.post("/dream", function (request, response) {
   dreams.push(request.query.dream);
   response.sendStatus(200);
 });
@@ -32,12 +33,31 @@ app.post("/dreams", function (request, response) {
 //   response.sendStatus(200);
 // });
 
-app.post('/upload', function (req, res, next) {
+app.post('/', function (req, res, next) {
   // req.body contains the text fields 
-  console.log("file-name = "+req.param.dream);
-  console.log("file-name " + req.body);
+  var upload = multer({ storage: storage}).single('userFile');
+  upload(req, res, function(err) {
+    if(err){
+        console.log(err);
+      }
+    else{
+      res.end('File is uploaded');
+      res.json({"Fil"})
+      console.log("file-name = "+req.file);
+    }
+	});
 });
 
+
+var storage = multer.diskStorage({
+	destination: function(req, file, callback) {
+		callback(null, './uploads')
+	},
+	filename: function(req, file, callback) {
+		console.log(file)
+		callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+	}
+});
 // Simple in-memory store for now
 var dreams = [
   "Find and count some sheep",
