@@ -26,6 +26,7 @@ $(function() {
 $('form').submit(function(event) {
     event.preventDefault();
     var files = document.getElementById('file').file;
+    // console.log("files "+files);
     var file_name = files[0];
     $.post('/upload?' + $.param({dream: file_name}), function() {
     });
