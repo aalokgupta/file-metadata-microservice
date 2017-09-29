@@ -25,12 +25,22 @@ $(function() {
 
 $('form').submit(function(event) {
     event.preventDefault();
-    var files = document.getElementById('file').file;
+    // var files = document.getElementById('file').file;
     // console.log("files "+files);
-    var file_name = files[0];
+    var file_name = "abcd.txt"; //files[0];
     $.post('/upload?' + $.param({dream: file_name}), function() {
     });
   });
+  
+  function getFile(filePath) {
+        return filePath.substr(filePath.lastIndexOf('\\') + 1).split('.')[0];
+    }
+
+    function getoutput() {
+        file_namee(inputfile.value);
+        extension.value = inputfile.value.split('.')[1];
+    }
+  
 });
 
 
