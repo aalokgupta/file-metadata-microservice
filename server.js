@@ -34,7 +34,7 @@ app.post("/dreams", function (request, response) {
 
 app.post('/upload', function (req, res, next) {
   // req.body contains the text fields 
-  console.log("file-name = "+req.file);
+  console.log("file-name = "+req.param.dream);
   console.log("file-name " + req.body);
 });
 
