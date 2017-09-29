@@ -22,23 +22,21 @@ $(function() {
   //     $('input').focus();
   //   });
   // });
-
+var file_name;
 $('form').submit(function(event) {
     event.preventDefault();
-    // var files = document.getElementById('file').file;
-    // console.log("files "+files);
-    var file_name = "abcd.txt"; //files[0];
+    getoutput();
+    console.log("files "+file_name);
     $.post('/upload?' + $.param({dream: file_name}), function() {
     });
   });
   
   function getFile(filePath) {
-        return filePath.substr(filePath.lastIndexOf('\\') + 1).split('.')[0];
+        return filePath.substr(filePath.lastIndexOf('\\') + 1);//.split('.')[0];
     }
 
-    function getoutput() {
-        file_namee(inputfile.value);
-        extension.value = inputfile.value.split('.')[1];
+  function getoutput() {
+        file_name = getFile(document.getElementById('file').value);
     }
   
 });
