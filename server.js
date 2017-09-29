@@ -3,7 +3,9 @@
 
 // init project
 var express = require('express');
+var multer  = require('multer');
 var app = express();
+var upload = multer();
 
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
@@ -26,11 +28,15 @@ app.post("/dreams", function (request, response) {
   response.sendStatus(200);
 });
 
-app.post("/upload", function (request, response) {
-  console.log("file-name " + request.query.dream);
-  response.sendStatus(200);
-});
+// app.post("/upload", function (request, response) {
+//   console.log("file-name " + request.query.dream);
+//   response.sendStatus(200);
+// });
 
+app.post('/upload', upload.single('Aalok.jpg'), function (req, res, next) {
+  // req.body contains the text fields 
+  console.log("file-name = "+req.body);
+});
 
 // Simple in-memory store for now
 var dreams = [
