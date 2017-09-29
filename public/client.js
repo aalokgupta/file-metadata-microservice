@@ -3,6 +3,8 @@
 
 // by default, you've got jQuery,
 // add other scripts at the bottom of index.html
+var multer  = require('multer');
+var upload = multer({dest: 'uploads/'});
 
 $(function() {
   console.log('hello world :o');
