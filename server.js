@@ -43,7 +43,7 @@ app.post('/', function (req, res, next) {
     else{
       // res.end('File is uploaded');
       res.json({"orifinal name": req.file.originalname, 
-                "size": req.file.});
+                "size": req.file.size});
       console.log("file-name = "+req.file);
     }
 	});
