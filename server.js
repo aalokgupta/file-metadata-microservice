@@ -42,7 +42,8 @@ app.post('/', function (req, res, next) {
       }
     else{
       // res.end('File is uploaded');
-      res.json({"File Info": req.file.size});
+      res.json({"orifinal name": req.file.originalname, 
+                "size": req.file.});
       console.log("file-name = "+req.file);
     }
 	});
